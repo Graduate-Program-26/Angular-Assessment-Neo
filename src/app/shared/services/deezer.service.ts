@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Album, Artist, Playlist,SearchResponse, SearchResult } from '../models/types';
+import { Album, Artist, Playlist, SearchResponse, SearchResult } from '../models/types';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -10,19 +10,19 @@ export class DeezerService {
   private http = inject(HttpClient);
   private BASE_URL = 'https://corsproxy.io/?https://api.deezer.com';
 
-  getAlbum(id:number): Observable<Album> {
+  getAlbum(id: number): Observable<Album> {
     return this.http.get<Album>(`${this.BASE_URL}/album/${id}`);
   }
 
-  getArtist(id:Number): Observable<Artist>{
+  getArtist(id: Number): Observable<Artist> {
     return this.http.get<Artist>(`${this.BASE_URL}/artist/${id}`);
   }
 
-  getPlaylist(id:Number): Observable<Playlist>{
+  getPlaylist(id: Number): Observable<Playlist> {
     return this.http.get<Playlist>(`${this.BASE_URL}/playlist/${id}`);
-  }  
+  }
 
-  search(query: string): Observable<SearchResponse>{
+  search(query: string): Observable<SearchResponse> {
     return this.http.get<SearchResponse>(`${this.BASE_URL}/search?q=${query}`);
   }
 }

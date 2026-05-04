@@ -10,12 +10,10 @@ import { DeezerService } from '../../shared/services/deezer.service';
   styleUrl: './playlist.css',
 })
 export class Playlist {
-   private deezerService = inject(DeezerService);
+  private deezerService = inject(DeezerService);
 
   id = input.required<string>();
-  playlist= toSignal(
-    toObservable(this.id).pipe(
-      switchMap(id => this.deezerService.getPlaylist(Number(id)))
-    )
+  playlist = toSignal(
+    toObservable(this.id).pipe(switchMap((id) => this.deezerService.getPlaylist(Number(id)))),
   );
 }

@@ -14,9 +14,6 @@ export class Album {
 
   id = input.required<string>();
   album = toSignal(
-    toObservable(this.id).pipe(
-      switchMap(id => this.deezerService.getAlbum(Number(id)))
-    )
+    toObservable(this.id).pipe(switchMap((id) => this.deezerService.getAlbum(Number(id)))),
   );
- 
 }

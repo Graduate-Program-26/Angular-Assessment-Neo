@@ -5,5 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './user-playlist.html',
   styleUrl: './user-playlist.css',
 })
-export class UserPlaylist {
-}
+export class UserPlaylist {}
