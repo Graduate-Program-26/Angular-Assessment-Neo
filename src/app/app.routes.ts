@@ -14,7 +14,7 @@ export const routes: Routes = [
         loadComponent: () => import('./features/artist/artist').then(m => m.Artist),
     },
     {
-        path: 'playlist',
+        path: 'playlist/:id',
         loadComponent: () => import('./features/playlist/playlist').then(m => m.Playlist),
     },
 ];
