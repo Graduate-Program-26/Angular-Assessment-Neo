@@ -19,8 +19,8 @@ export class Search {
     this.query.valueChanges.pipe(
       debounceTime(450),
       distinctUntilChanged(),
-      filter(query => query.trim().length > 0),
-      switchMap(query => this.deezerService.search(query))
-    )
+      filter((query) => query.trim().length > 0),
+      switchMap((query) => this.deezerService.search(query)),
+    ),
   );
 }

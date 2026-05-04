@@ -13,9 +13,7 @@ export class Artist {
   private deezerService = inject(DeezerService);
 
   id = input.required<string>();
-  artist= toSignal(
-    toObservable(this.id).pipe(
-      switchMap(id => this.deezerService.getArtist(Number(id)))
-    )
+  artist = toSignal(
+    toObservable(this.id).pipe(switchMap((id) => this.deezerService.getArtist(Number(id)))),
   );
 }
