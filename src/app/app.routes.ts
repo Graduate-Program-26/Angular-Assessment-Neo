@@ -18,7 +18,11 @@ export const routes: Routes = [
         loadComponent: () => import('./features/artist/artist').then(m => m.Artist),
     },
     {
+        path: 'playlist',
+        loadComponent: () => import('./features/playlist/playlist-list/playlist-list').then(m => m.PlaylistList),
+    },
+    {
         path: 'playlist/:id',
-        loadComponent: () => import('./features/playlist/playlist').then(m => m.Playlist),
+        loadComponent: () => import('./features/playlist/user-playlist/user-playlist').then(m => m.UserPlaylist),
     },
 ];
