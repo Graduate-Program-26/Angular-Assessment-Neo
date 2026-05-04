@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Album} from '../models/types';
+import { Album, Artist, Playlist} from '../models/types';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -12,5 +12,9 @@ export class DeezerService {
 
   getAlbum(id:number): Observable<Album> {
     return this.http.get<Album>(`${this.BASE_URL}/album/${id}`);
+  }
+
+  getArtist(id:Number): Observable<Artist>{
+    return this.http.get<Artist>(`${this.BASE_URL}/artist/${id}`);
   }
 }

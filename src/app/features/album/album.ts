@@ -11,10 +11,12 @@ import { DeezerService } from '../../shared/services/deezer.service';
 })
 export class Album {
   private deezerService = inject(DeezerService);
+
   id = input.required<string>();
   album = toSignal(
     toObservable(this.id).pipe(
       switchMap(id => this.deezerService.getAlbum(Number(id)))
     )
   );
+ 
 }
