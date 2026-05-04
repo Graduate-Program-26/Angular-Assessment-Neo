@@ -1,24 +1,20 @@
 import { Routes } from '@angular/router';
-import { Album } from './features/album/album';
-import { Artist } from './features/artist/artist';
-import { Playlist } from './features/playlist/playlist';
-import { Home } from './features/home/home';
 
 export const routes: Routes = [
     {
         path: '',
-        component: Home,
+        loadComponent: () => import('./features/home/home').then(m => m.Home),
     },
     {
-        path: 'album',
-        component: Album,
+        path: 'album/:id',
+        loadComponent: () => import('./features/album/album').then(m => m.Album),
     },
     {
-        path: 'artist',
-        component: Artist,
+        path: 'artist/:id',
+        loadComponent: () => import('./features/artist/artist').then(m => m.Artist),
     },
     {
         path: 'playlist',
-        component: Playlist,
+        loadComponent: () => import('./features/playlist/playlist').then(m => m.Playlist),
     },
 ];
