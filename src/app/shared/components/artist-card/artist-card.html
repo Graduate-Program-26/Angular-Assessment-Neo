@@ -1,0 +1,10 @@
+<a [routerLink]="['/artist', artist().id]"
+   class="flex flex-col items-center gap-3 p-4 bg-[#1d1633] rounded-xl cursor-pointer transition-all duration-300 hover:bg-[#261d3d] hover:scale-[1.07]">
+  <img
+    [src]="artist().picture"
+    [alt]="artist().name"
+    class="w-27 h-27 rounded-full object-cover" />
+  <span class="text-[#f5f3ff] font-medium text-sm text-center">
+    {{ artist().name }}
+  </span>
+</a>
