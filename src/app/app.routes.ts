@@ -6,6 +6,10 @@ export const routes: Routes = [
         loadComponent: () => import('./features/home/home').then(m => m.Home),
     },
     {
+        path: 'search',
+        loadComponent: () => import('./features/search/search').then(m => m.Search),
+    },
+    {
         path: 'album/:id',
         loadComponent: () => import('./features/album/album').then(m => m.Album),
     },
