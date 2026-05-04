@@ -1,0 +1,15 @@
+<a [routerLink]="['/album', album().id]"
+   class="flex flex-col gap-2 pb-3 bg-[#1d1633] rounded-lg cursor-pointer transition-all duration-300 hover:bg-[#261d3d] hover:scale-[1.02]">
+  <img
+    [src]="album().cover"
+    [alt]="album().title"
+    class="w-full aspect-square rounded-sm object-cover" />
+  <div class="flex flex-col gap-0.5 px-1">
+    <span class="text-[#f5f3ff] font-medium text-sm leading-tight truncate">
+      {{ album().title }}
+    </span>
+    @if (artistName()) {
+      <span class="text-[#6d6a7c] text-xs truncate">{{ artistName() }}</span>
+    }
+  </div>
+</a>
