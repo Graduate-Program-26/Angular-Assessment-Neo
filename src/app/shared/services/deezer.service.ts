@@ -17,4 +17,9 @@ export class DeezerService {
   getArtist(id:Number): Observable<Artist>{
     return this.http.get<Artist>(`${this.BASE_URL}/artist/${id}`);
   }
+
+  getPlaylist(id:Number): Observable<Playlist>{
+    return this.http.get<Playlist>(`${this.BASE_URL}/playlist/${id}`);
+  }  
+
 }
