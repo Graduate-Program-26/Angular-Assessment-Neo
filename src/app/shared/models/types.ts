@@ -18,6 +18,18 @@ export interface Album {
     tracks: Track[]
 }
 
+export interface Playlist{
+    id: number,
+    title: string,
+    description: string,
+    fans: number,
+    picture: string,
+    creator: {
+        name: string
+    }
+    tracks: Track[],
+}
+
 export interface Track {
     id: number,
     title: string,
