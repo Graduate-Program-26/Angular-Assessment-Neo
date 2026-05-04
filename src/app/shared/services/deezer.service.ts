@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Album, Artist, Playlist} from '../models/types';
+import { Album, Artist, Playlist,SearchResponse, SearchResult } from '../models/types';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -22,4 +22,7 @@ export class DeezerService {
     return this.http.get<Playlist>(`${this.BASE_URL}/playlist/${id}`);
   }  
 
+  search(query: string): Observable<SearchResponse>{
+    return this.http.get<SearchResponse>(`${this.BASE_URL}/search?q=${query}`);
+  }
 }
