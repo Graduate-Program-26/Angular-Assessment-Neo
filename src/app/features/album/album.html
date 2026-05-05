@@ -1,1 +1,66 @@
-<p>album works!</p>
+@if (!album()) {
+  <p class="min-h-screen bg-[#0f0b1a] flex items-center justify-center text-[#6d6a7c]">Loading...</p>
+} @else {
+
+  <div class="relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-[#2d1b69] via-[#1a1033] to-[#0f0b1a]"></div>
+
+    <div class="relative px-8 pt-16 pb-8 flex items-end gap-6">
+      <img
+        [src]="album()!.cover_xl"
+        [alt]="album()!.title"
+        class="w-52 h-52 rounded shadow-2xl shrink-0 object-cover" />
+
+      <div class="flex flex-col gap-2 min-w-0">
+        <span class="text-xs uppercase tracking-widest text-[#c4b5fd] font-medium">
+          {{ album()!.record_type | titlecase }}
+        </span>
+        <h1 class="text-5xl font-black text-white leading-tight truncate">{{ album()!.title }}</h1>
+        <div class="flex items-center gap-1 text-sm text-[#6d6a7c] flex-wrap">
+          @if (album()!.artist) {
+            <a
+              [routerLink]="['/artist', album()!.artist!.id]"
+              class="text-white font-semibold hover:underline">
+              {{ album()!.artist!.name }}
+            </a>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-[#0f0b1a] px-8 pb-16">
+
+    <div class="grid grid-cols-[2rem_1fr_auto] gap-x-4 px-4 py-2 text-xs uppercase tracking-widest text-[#6d6a7c] border-b border-[#ffffff1a] mb-2">
+      <span class="text-right">#</span>
+      <span>Title</span>
+      <span>Duration</span>
+    </div>
+
+    @if (!album()!.tracks || album()!.tracks!.data.length === 0) {
+      <p class="text-[#6d6a7c] mt-4">No tracks available.</p>
+    } @else {
+      <ul class="flex flex-col">
+        @for (track of album()!.tracks!.data; track track.id; let i = $index) {
+          <li class="grid grid-cols-[2rem_1fr_auto] gap-x-4 items-center px-4 py-2 rounded-lg group hover:bg-[#1d1633] transition-colors">
+            <button
+              class="w-5 h-5 flex items-center justify-center text-[#6d6a7c] group-hover:text-white transition-colors shrink-0">
+                <span class="text-sm">{{ i + 1 }}</span>  
+            </button>
+
+            <div class="flex flex-col min-w-0">
+              <span
+                class="text-sm truncate transition-colors">
+                {{ track.title }}
+              </span>
+              @if (track.explicit_lyrics) {
+                <span class="text-[10px] border border-[#6d6a7c] text-[#6d6a7c] px-1 rounded w-fit mt-0.5">E</span>
+              }
+            </div>
+            <span class="text-[#6d6a7c] text-sm shrink-0">{{ track.duration | duration }}</span>
+          </li>
+        }
+      </ul>
+    }
+  </div>
+}
