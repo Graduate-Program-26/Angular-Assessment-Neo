@@ -1,7 +1,10 @@
 export interface Artist {
   id: number;
   name: string;
-  picture: string;
+  picture_small: string;
+  picture_medium: string;
+  picture_big: string;
+  picture_xl: string;
   nb_album: number;
   nb_fan: number;
 }
@@ -9,7 +12,10 @@ export interface Artist {
 export interface Album {
   id: number;
   title: string;
-  cover: string;
+  cover_small: string;
+  cover_medium: string;
+  cover_big: string;
+  cover_xl: string
   label: string;
   nb_tracks: number;
   duration: number;
@@ -23,7 +29,10 @@ export interface Playlist {
   title: string;
   description: string;
   fans: number;
-  picture: string;
+  picture_small: string;
+  picture_medium: string;
+  picture_big: string;
+  picture_xl: string;
   creator: {
     name: string;
   };
@@ -46,8 +55,8 @@ export interface SearchResult {
   title: string;
   duration: number;
   preview: string;
-  artist: Pick<Artist, 'id' | 'name' | 'picture'>;
-  album: Pick<Album, 'id' | 'title' | 'cover'>;
+  artist: Pick<Artist, 'id' | 'name' | 'picture_small'|  'picture_medium' | 'picture_big' | 'picture_xl'>;
+  album: Pick<Album, 'id' | 'title' | 'cover_small' | 'cover_medium' | 'cover_big' | 'cover_xl'>;
 }
 
 export interface SearchResponse {
