@@ -35,4 +35,9 @@ export class Album {
     if (minute > 0) return `${minute} min ${second} sec`;
     return `${second} sec`;
   });
+
+    releaseYear = computed(() => {
+    const date = this.album()?.release_date;
+    return date ? new Date(date).getFullYear() : null;
+  });
 }
