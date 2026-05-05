@@ -1,1 +1,69 @@
-<p>artist works!</p>
+@if (!artist()) {
+  <p class="min-h-screen bg-[#0f0b1a] flex items-center justify-center text-[#6d6a7c]">Loading...</p>
+} @else {
+
+  <div class="relative h-80 overflow-hidden">
+    <img
+      [src]="artist()!.picture_xl"
+      [alt]="artist()!.name"
+      class="absolute inset-0 w-full h-full object-cover scale-110 blur-2xl brightness-50" />
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent to-[#0f0b1a]"></div>
+
+    <div class="absolute bottom-0 left-0 px-8 pb-8 flex items-end gap-6">
+      <img
+        [src]="artist()!.picture_big"
+        [alt]="artist()!.name"
+        class="w-36 h-36 rounded-full object-cover shadow-2xl" />
+      <div class="flex flex-col gap-1">
+        <span class="text-xs uppercase tracking-widest text-[#c4b5fd] font-medium">Artist</span>
+        <h1 class="text-5xl font-black text-white leading-tight">{{ artist()!.name }}</h1>
+        <p class="text-[#6d6a7c] text-sm mt-1">{{ formattedFans() }} fans</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-[#0f0b1a] px-8 pb-16">
+    <section>
+      <h2 class="text-white font-bold text-xl mb-4">Popular</h2>
+
+      @if (!topTracks()) {
+        <p class="text-[#6d6a7c]">Loading tracks...</p>
+      } @else {
+        <ul class="flex flex-col">
+          @for (track of topTracks()!.data; track track.id; let i = $index) {
+            <li class="flex items-center gap-4 px-4 py-2 rounded-lg group hover:bg-[#1d1633] transition-colors">
+              <span class="w-5 text-right text-[#6d6a7c] text-sm group-hover:text-white shrink-0">
+                {{ i + 1 }}
+              </span>
+              <img
+                [src]="track.album.cover_medium"
+                [alt]="track.title"
+                class="w-10 h-10 rounded object-cover shrink-0" />
+              <span class="flex-1 text-[#f5f3ff] text-sm truncate">{{ track.title }}</span>
+              @if (track.explicit_lyrics) {
+                <span class="text-[10px] border border-[#6d6a7c] text-[#6d6a7c] px-1 rounded shrink-0">E</span>
+              }
+              <span class="text-[#6d6a7c] text-sm shrink-0">{{ track.duration | duration }}</span>
+            </li>
+          }
+        </ul>
+      }
+    </section>
+
+    <section class="mt-12">
+      <h2 class="text-white font-bold text-xl mb-4">Discography</h2>
+
+      @if (!albums()) {
+        <p class="text-[#6d6a7c]">Loading albums...</p>
+      } @else if (albums()!.data.length === 0) {
+        <p class="text-[#6d6a7c]">No albums found.</p>
+      } @else {
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+          @for (album of albums()!.data; track album.id) {
+            <app-album-card [album]="album" [artistName]="artist()!.name" />
+          }
+        </div>
+      }
+    </section>
+  </div>
+}

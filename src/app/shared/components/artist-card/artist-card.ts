@@ -9,5 +9,5 @@ import { Artist } from '../../models/types';
   styleUrl: './artist-card.css',
 })
 export class ArtistCard {
-  artist = input.required<Pick<Artist, 'id' | 'name' | 'picture'>>();
+  artist = input.required<Pick<Artist, 'id' | 'name' | 'picture_small' | 'picture_medium' | 'picture_big' | 'picture_xl'>>();
 }
