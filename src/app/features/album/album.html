@@ -23,7 +23,13 @@
               class="text-white font-semibold hover:underline">
               {{ album()!.artist!.name }}
             </a>
+            <span>·</span>
           }
+          @if (releaseYear()) {
+            <span>{{ releaseYear() }}</span>
+            <span>·</span>
+          }
+          <span>{{ totalDuration() }}</span>
         </div>
       </div>
     </div>
