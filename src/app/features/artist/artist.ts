@@ -18,20 +18,16 @@ export class Artist {
 
   id = input.required<string>();
 
-  private id$ = toObservable(this.id).pipe(
-    filter(id => !!id && !isNaN(Number(id)))
-  );
+  private id$ = toObservable(this.id).pipe(filter((id) => !!id && !isNaN(Number(id))));
 
-  artist = toSignal(
-    this.id$.pipe(switchMap(id => this.deezerService.getArtist(Number(id))))
-  );
+  artist = toSignal(this.id$.pipe(switchMap((id) => this.deezerService.getArtist(Number(id)))));
 
   topTracks = toSignal(
-    this.id$.pipe(switchMap(id => this.deezerService.getArtistTopTracks(Number(id))))
+    this.id$.pipe(switchMap((id) => this.deezerService.getArtistTopTracks(Number(id)))),
   );
 
   albums = toSignal(
-    this.id$.pipe(switchMap(id => this.deezerService.getArtistAlbums(Number(id))))
+    this.id$.pipe(switchMap((id) => this.deezerService.getArtistAlbums(Number(id)))),
   );
 
   formattedFans = computed(() => {

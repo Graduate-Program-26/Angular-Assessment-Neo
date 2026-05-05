@@ -19,15 +19,11 @@ export class Album {
 
   id = input.required<string>();
 
-  private id$ = toObservable(this.id).pipe(
-    filter(id => !!id && !isNaN(Number(id)))
-  );
+  private id$ = toObservable(this.id).pipe(filter((id) => !!id && !isNaN(Number(id))));
 
-  album = toSignal(
-    this.id$.pipe(switchMap(id => this.deezerService.getAlbum(Number(id))))
-  );
+  album = toSignal(this.id$.pipe(switchMap((id) => this.deezerService.getAlbum(Number(id)))));
 
-    totalDuration = computed(() => {
+  totalDuration = computed(() => {
     const tracks = this.album()?.tracks?.data ?? [];
     const totalTime = tracks.reduce((sum, t) => sum + t.duration, 0);
     const hour = Math.floor(totalTime / 3600);
@@ -38,7 +34,7 @@ export class Album {
     return `${second} sec`;
   });
 
-    releaseYear = computed(() => {
+  releaseYear = computed(() => {
     const date = this.album()?.release_date;
     return date ? new Date(date).getFullYear() : null;
   });
