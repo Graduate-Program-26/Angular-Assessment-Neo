@@ -9,6 +9,6 @@ import { Album } from '../../models/types';
   styleUrl: './album-card.css',
 })
 export class AlbumCard {
-  album = input.required<Pick<Album, 'id' | 'title' | 'cover'>>();
+  album = input.required<Pick<Album, 'id' | 'title' | 'cover_small' |'cover_medium' | 'cover_big' | 'cover_xl'>>();
   artistName = input<string>();
 }
