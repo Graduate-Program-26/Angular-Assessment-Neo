@@ -23,6 +23,7 @@ export interface Album {
   nb_tracks?: number;
   duration?: number;
   tracks?: { data: Track[] };
+  artist?: { id: number; name: string };
 }
 
 export interface Track {
