@@ -5,6 +5,7 @@ import { TitleCasePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { DeezerService } from '../../shared/services/deezer.service';
 import { DurationPipe } from '../../shared/pipes/duration.pipe';
+import { PlayerService } from '../../shared/services/player.service';
 
 @Component({
   selector: 'app-album',
@@ -14,6 +15,7 @@ import { DurationPipe } from '../../shared/pipes/duration.pipe';
 })
 export class Album {
   private deezerService = inject(DeezerService);
+  protected playerService = inject(PlayerService);
 
   id = input.required<string>();
 
