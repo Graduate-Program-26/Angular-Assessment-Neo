@@ -38,6 +38,29 @@ export const PlaylistStore = signalStore(
       });
       set(DB_KEY, store.playlists());
     },
+
+    rename(id: string, name: string): void {
+      patchState(store, {
+        playlists: store.playlists().map(playlist => (playlist.id === id ? { ...playlist, name: name.trim() } : playlist)),
+      });
+      set(DB_KEY, store.playlists());
+    },
+
+    delete(id: string): void {
+      patchState(store, { playlists: store.playlists().filter(playlist => playlist.id !== id) });
+      set(DB_KEY, store.playlists());
+    },
+
+    removeTrack(playlistId: string, trackId: number): void {
+      patchState(store, {
+        playlists: store.playlists().map(playlist =>
+          playlist.id === playlistId
+            ? { ...playlist, tracks: playlist.tracks.filter(t => t.id !== trackId) }
+            : playlist
+        ),
+      });
+      set(DB_KEY, store.playlists());
+    },
   })),
 
   withHooks({
