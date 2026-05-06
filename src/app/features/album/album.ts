@@ -4,18 +4,16 @@ import { filter, switchMap } from 'rxjs';
 import { TitleCasePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { DeezerService } from '../../shared/services/deezer.service';
-import { DurationPipe } from '../../shared/pipes/duration.pipe';
-import { PlayerService } from '../../shared/services/player.service';
+import { TrackItem } from '../../shared/components/track/track';
 
 @Component({
   selector: 'app-album',
-  imports: [DurationPipe, RouterLink, TitleCasePipe],
+  imports: [RouterLink, TitleCasePipe, TrackItem],
   templateUrl: './album.html',
   styleUrl: './album.css',
 })
 export class Album {
   private deezerService = inject(DeezerService);
-  protected playerService = inject(PlayerService);
 
   id = input.required<string>();
 

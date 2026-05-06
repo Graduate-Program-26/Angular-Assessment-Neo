@@ -66,62 +66,9 @@
     @if (!album()!.tracks || album()!.tracks!.data.length === 0) {
       <p class="text-[#6d6a7c] mt-4">No tracks available.</p>
     } @else {
-      <ul class="flex flex-col">
+      <ul class="flex flex-col list-none">
         @for (track of album()!.tracks!.data; track track.id; let i = $index) {
-          <li
-            class="grid grid-cols-[2rem_1fr_auto] gap-x-4 items-center px-4 py-2 rounded-lg group hover:bg-[#1d1633] transition-colors"
-          >
-            <button
-              (click)="playerService.togglePlay(track.id, track.preview)"
-              class="w-5 h-5 flex items-center justify-center text-[#6d6a7c] group-hover:text-white transition-colors shrink-0"
-            >
-              @if (playerService.playingTrackId() === track.id) {
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="#ffff"
-                  class="w-4 h-4 text-[#c4b5fd]"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M6.75 5.25a.75.75 0 0 1 .75-.75H9a.75.75 0 0 1 .75.75v13.5a.75.75 0 0 1-.75.75H7.5a.75.75 0 0 1-.75-.75V5.25zm7.5 0A.75.75 0 0 1 15 4.5h1.5a.75.75 0 0 1 .75.75v13.5a.75.75 0 0 1-.75.75H15a.75.75 0 0 1-.75-.75V5.25z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-              } @else {
-                <span class="text-sm group-hover:hidden">{{ i + 1 }}</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="#ffff"
-                  class="w-4 h-4 hidden group-hover:block"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M4.5 5.653c0-1.427 1.529-2.33 2.779-1.643l11.54 6.347c1.295.712 1.295 2.573 0 3.286L7.28 19.99c-1.25.687-2.779-.217-2.779-1.643V5.653z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-              }
-            </button>
-
-            <div class="flex flex-col min-w-0">
-              <span
-                class="text-sm truncate transition-colors"
-                [class.text-\[#c4b5fd\]]="playerService.playingTrackId() === track.id"
-                [class.text-\[#f5f3ff\]]="playerService.playingTrackId() !== track.id"
-              >
-                {{ track.title }}
-              </span>
-              @if (track.explicit_lyrics) {
-                <span
-                  class="text-[10px] border border-[#6d6a7c] text-[#6d6a7c] px-1 rounded w-fit mt-0.5"
-                  >E</span
-                >
-              }
-            </div>
-            <span class="text-[#6d6a7c] text-sm shrink-0">{{ track.duration | duration }}</span>
-          </li>
+          <app-track [track]="track" [index]="i" />
         }
       </ul>
     }
