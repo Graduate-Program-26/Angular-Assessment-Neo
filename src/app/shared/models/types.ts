@@ -98,3 +98,10 @@ export interface SearchResponse {
   total: number;
   next?: string;
 }
+
+export interface UserPlaylist {
+  id: string;
+  name: string; 
+  tracks: Track[];
+  createdAt: number;
+}
