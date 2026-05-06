@@ -63,7 +63,7 @@
       <ul class="flex flex-col list-none">
         @for (track of playlist()!.tracks; track track.id; let i = $index) {
           <li class="group relative flex items-center">
-            <app-track [track]="track"  [index]="i" class="flex-1" />
+            <app-track [track]="track" [coverUrl]="coverUrl(track.md5_image)" [index]="i" class="flex-1" />
             <button
               (click)="store.removeTrack(playlist()!.id, track.id)"
               class="shrink-0 p-2 mr-2 rounded-lg text-[#6d6a7c] hover:text-white hover:bg-[#2d2450] opacity-0 group-hover:opacity-100 transition-all"

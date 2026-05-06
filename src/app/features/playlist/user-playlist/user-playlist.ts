@@ -28,4 +28,8 @@ export class UserPlaylist {
     if (minute > 0) return `${minute} min ${second} sec`;
     return `${second} sec`;
   });
+
+  coverUrl(md5: string): string | undefined {
+    return md5 ? `https://e-cdns-images.dzcdn.net/images/cover/${md5}/56x56-000000-80-0-0.jpg` : undefined;
+  }
 }
