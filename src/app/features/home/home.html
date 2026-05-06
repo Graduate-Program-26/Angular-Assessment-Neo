@@ -1,1 +1,42 @@
-<p>home works!</p>
+<div class="relative overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-b from-[#2d1b69] via-[#1a1033] to-[#0f0b1a]"></div>
+  <div class="relative px-8 pt-16 pb-12">
+    <h1 class="text-4xl font-black text-white">Good Evening</h1>
+    <p class="text-[#6d6a7c] mt-2 text-sm">Discover what's trending right now</p>
+  </div>
+</div>
+
+<div class="bg-[#0f0b1a] px-8 pb-16">
+  @if (!chart()) {
+    <p class="text-[#6d6a7c] mt-12 text-center">Loading charts...</p>
+  } 
+  @else {
+    <section class="mt-10">
+      <h2 class="text-white font-bold text-xl mb-4">Top Artists</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+        @for (artist of chart()!.artists.data; track artist.id) {
+          <app-artist-card [artist]="artist" />
+        }
+      </div>
+    </section>
+
+    <section class="mt-12">
+      <h2 class="text-white font-bold text-xl mb-4">Top Albums</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+        @for (album of chart()!.albums.data; track album.id) {
+          <app-album-card [album]="album" />
+        }
+      </div>
+    </section>
+
+    <section class="mt-12">
+      <h2 class="text-white font-bold text-xl mb-4">Top Tracks</h2>
+      <ul class="flex flex-col list-none">
+        @for (track of chart()!.tracks.data; track track.id; let i = $index) {
+          <app-track [track]="track" [index]="i" [coverUrl]="track.album.cover_medium" />
+        }
+      </ul>
+    </section>
+  }
+  
+</div>
