@@ -2,6 +2,7 @@ import { Component, computed, inject, input } from '@angular/core';
 import { toSignal, toObservable } from '@angular/core/rxjs-interop';
 import { filter, switchMap } from 'rxjs';
 import { DeezerService } from '../../shared/services/deezer.service';
+import { PlayerService } from '../../shared/services/player.service';
 import { AlbumCard } from '../../shared/components/album-card/album-card';
 import { DurationPipe } from '../../shared/pipes/duration.pipe';
 
@@ -13,23 +14,20 @@ import { DurationPipe } from '../../shared/pipes/duration.pipe';
 })
 export class Artist {
   private deezerService = inject(DeezerService);
+  protected playerService = inject(PlayerService);
 
   id = input.required<string>();
 
-  private id$ = toObservable(this.id).pipe(
-    filter(id => !!id && !isNaN(Number(id)))
-  );
+  private id$ = toObservable(this.id).pipe(filter((id) => !!id && !isNaN(Number(id))));
 
-  artist = toSignal(
-    this.id$.pipe(switchMap(id => this.deezerService.getArtist(Number(id))))
-  );
+  artist = toSignal(this.id$.pipe(switchMap((id) => this.deezerService.getArtist(Number(id)))));
 
   topTracks = toSignal(
-    this.id$.pipe(switchMap(id => this.deezerService.getArtistTopTracks(Number(id))))
+    this.id$.pipe(switchMap((id) => this.deezerService.getArtistTopTracks(Number(id)))),
   );
 
   albums = toSignal(
-    this.id$.pipe(switchMap(id => this.deezerService.getArtistAlbums(Number(id))))
+    this.id$.pipe(switchMap((id) => this.deezerService.getArtistAlbums(Number(id)))),
   );
 
   formattedFans = computed(() => {

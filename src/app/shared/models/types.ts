@@ -54,7 +54,17 @@ export interface TopTracksResponse {
 }
 
 export interface ArtistAlbumsResponse {
-  data: Pick<Album, 'id' | 'title' | 'cover_small' | 'cover_medium' | 'cover_big' | 'cover_xl' | 'release_date' | 'record_type'>[];
+  data: Pick<
+    Album,
+    | 'id'
+    | 'title'
+    | 'cover_small'
+    | 'cover_medium'
+    | 'cover_big'
+    | 'cover_xl'
+    | 'release_date'
+    | 'record_type'
+  >[];
   total: number;
 }
 
@@ -76,7 +86,10 @@ export interface SearchResult {
   title: string;
   duration: number;
   preview: string;
-  artist: Pick<Artist, 'id' | 'name' | 'picture_small' | 'picture_medium' | 'picture_big' | 'picture_xl'>;
+  artist: Pick<
+    Artist,
+    'id' | 'name' | 'picture_small' | 'picture_medium' | 'picture_big' | 'picture_xl'
+  >;
   album: Pick<Album, 'id' | 'title' | 'cover_small' | 'cover_medium' | 'cover_big' | 'cover_xl'>;
 }
 

@@ -28,19 +28,23 @@ export class Search {
 
   uniqueArtists = computed(() => {
     const seenArtists = new Set<number>();
-    return (this.results()?.data ?? []).filter(result => {
-      if (seenArtists.has(result.artist.id)) return false;
-      seenArtists.add(result.artist.id);
-      return true;
-    }).map(result => result.artist);
+    return (this.results()?.data ?? [])
+      .filter((result) => {
+        if (seenArtists.has(result.artist.id)) return false;
+        seenArtists.add(result.artist.id);
+        return true;
+      })
+      .map((result) => result.artist);
   });
 
   uniqueAlbums = computed(() => {
     const seenAlbums = new Set<number>();
-    return (this.results()?.data ?? []).filter(result => {
-      if (seenAlbums.has(result.album.id)) return false;
-      seenAlbums.add(result.album.id);
-      return true;
-    }).map(result => ({ ...result.album, artistName: result.artist.name }));
+    return (this.results()?.data ?? [])
+      .filter((result) => {
+        if (seenAlbums.has(result.album.id)) return false;
+        seenAlbums.add(result.album.id);
+        return true;
+      })
+      .map((result) => ({ ...result.album, artistName: result.artist.name }));
   });
 }
