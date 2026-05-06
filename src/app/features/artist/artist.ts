@@ -2,19 +2,17 @@ import { Component, computed, inject, input } from '@angular/core';
 import { toSignal, toObservable } from '@angular/core/rxjs-interop';
 import { filter, switchMap } from 'rxjs';
 import { DeezerService } from '../../shared/services/deezer.service';
-import { PlayerService } from '../../shared/services/player.service';
 import { AlbumCard } from '../../shared/components/album-card/album-card';
-import { DurationPipe } from '../../shared/pipes/duration.pipe';
+import { TrackItem } from '../../shared/components/track/track';
 
 @Component({
   selector: 'app-artist',
-  imports: [AlbumCard, DurationPipe],
+  imports: [AlbumCard, TrackItem],
   templateUrl: './artist.html',
   styleUrl: './artist.css',
 })
 export class Artist {
   private deezerService = inject(DeezerService);
-  protected playerService = inject(PlayerService);
 
   id = input.required<string>();
 
