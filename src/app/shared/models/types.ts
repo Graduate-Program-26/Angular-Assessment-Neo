@@ -47,6 +47,7 @@ export interface TopTrack {
   preview: string;
   md5_image: string;
   album: Pick<Album, 'id' | 'title' | 'cover_medium'>;
+  artist?: { id: number; name: string };
 }
 
 export interface TopTracksResponse {

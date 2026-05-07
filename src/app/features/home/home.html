@@ -33,7 +33,7 @@
       <h2 class="text-white font-bold text-xl mb-4">Top Tracks</h2>
       <ul class="flex flex-col list-none">
         @for (track of chart()!.tracks.data; track track.id; let i = $index) {
-          <app-track [track]="track" [index]="i" [coverUrl]="track.album.cover_medium" />
+          <app-track [track]="track" [index]="i" [coverUrl]="track.album.cover_medium" [artistName]="track.artist?.name" />
         }
       </ul>
     </section>
