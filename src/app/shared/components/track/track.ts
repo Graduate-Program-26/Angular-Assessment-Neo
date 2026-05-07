@@ -17,6 +17,7 @@ export class TrackItem {
   track = input.required<Track>();
   index = input.required<number>();
   coverUrl = input<string | undefined>(undefined);
+  artistName = input<string | undefined>(undefined);
 
   protected playerService = inject(PlayerService);
   protected store = inject(PlaylistStore);

@@ -4,6 +4,7 @@ import {
   Album,
   Artist,
   ArtistAlbumsResponse,
+  ChartResponse,
   Playlist,
   SearchResponse,
   TopTracksResponse,
@@ -35,6 +36,10 @@ export class DeezerService {
 
   getPlaylist(id: number): Observable<Playlist> {
     return this.http.get<Playlist>(`${this.BASE_URL}/playlist/${id}`);
+  }
+
+  getChart(): Observable<ChartResponse> {
+    return this.http.get<ChartResponse>(`${this.BASE_URL}/chart`);
   }
 
   search(query: string): Observable<SearchResponse> {

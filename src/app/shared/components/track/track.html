@@ -24,9 +24,14 @@
     [class.text-\[#f5f3ff\]]="playerService.playingTrackId() !== track().id">
     {{ track().title }}
   </span>
-  @if (track().explicit_lyrics) {
-    <span class="text-[10px] border border-[#6d6a7c] text-[#6d6a7c] px-1 rounded w-fit mt-0.5">E</span>
-  }
+  <div class="flex items-center gap-1 mt-0.5">
+    @if (track().explicit_lyrics) {
+      <span class="text-[10px] border border-[#6d6a7c] text-[#6d6a7c] px-1 rounded shrink-0">E</span>
+    }
+    @if (artistName()) {
+      <span class="text-xs text-[#6d6a7c] truncate">{{ artistName() }}</span>
+    }
+  </div>
 </div>
 
 <div class="relative shrink-0">

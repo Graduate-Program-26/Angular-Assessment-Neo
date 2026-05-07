@@ -68,7 +68,7 @@
     } @else {
       <ul class="flex flex-col list-none">
         @for (track of album()!.tracks!.data; track track.id; let i = $index) {
-          <app-track [track]="track" [index]="i" />
+          <app-track [track]="track" [index]="i" [artistName]="album()!.artist?.name" />
         }
       </ul>
     }

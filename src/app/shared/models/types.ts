@@ -47,6 +47,7 @@ export interface TopTrack {
   preview: string;
   md5_image: string;
   album: Pick<Album, 'id' | 'title' | 'cover_medium'>;
+  artist?: { id: number; name: string };
 }
 
 export interface TopTracksResponse {
@@ -104,4 +105,14 @@ export interface UserPlaylist {
   name: string; 
   tracks: Track[];
   createdAt: number;
+}
+
+export interface ChartResponse {
+  tracks: { data: TopTrack[] };
+  albums: {
+    data: Pick<Album, 'id' | 'title' | 'cover_small' | 'cover_medium' | 'cover_big' | 'cover_xl' | 'release_date' | 'record_type'>[];
+  };
+  artists: {
+    data: Pick<Artist, 'id' | 'name' | 'picture_small' | 'picture_medium' | 'picture_big' | 'picture_xl'>[];
+  };
 }
