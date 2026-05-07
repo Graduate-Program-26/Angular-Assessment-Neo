@@ -12,7 +12,7 @@
 
     <div class="absolute bottom-0 left-0 px-8 pb-8 flex items-end gap-4 sm:gap-6">
       <img
-        [src]="artist()!.picture_big"
+        [src]="artist()!.picture_medium"
         [alt]="artist()!.name"
         class="w-24 h-24 sm:w-36 sm:h-36 rounded-full object-cover shadow-2xl shrink-0"
       />
@@ -63,7 +63,7 @@
         </div>
         <ul class="flex flex-col list-none">
           @for (track of topTracks()!.data; track track.id; let i = $index) {
-            <app-track [track]="track" [index]="i" [coverUrl]="track.album.cover_medium" [artistName]="artist()!.name" [rank]="track.rank" />
+            <app-track [track]="track" [index]="i" [coverUrl]="track.album.cover_small" [artistName]="artist()!.name" [rank]="track.rank" />
           }
         </ul>
       }

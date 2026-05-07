@@ -40,7 +40,9 @@
 
     <div class="relative px-8 pt-16 pb-8 flex flex-col sm:flex-row items-start sm:items-end gap-6">
       <img
-        [src]="album()!.cover_xl"
+        [src]="album()!.cover_big"
+        [srcset]="album()!.cover_medium + ' 250w, ' + album()!.cover_big + ' 400w, ' + album()!.cover_xl + ' 1000w'"
+        sizes="(max-width: 640px) 144px, 208px"
         [alt]="album()!.title"
         class="w-36 h-36 sm:w-52 sm:h-52 rounded shadow-2xl shrink-0 object-cover"
       />
