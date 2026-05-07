@@ -1,38 +1,83 @@
-<header class="flex items-center gap-6 px-6 py-4 bg-[#0f0b1a] border-b border-[#1d1633]">
-  <span class="text-[#f5f3ff] font-bold text-xl"> MyDeezer App </span>
+<header class="bg-[#0f0b1a] border-b border-[#1d1633]">
+  <div class="flex items-center gap-6 px-6 py-4">
+    <span class="text-[#f5f3ff] font-bold text-xl">MyDeezer App</span>
 
-  <nav class="ml-auto">
-    <ul class="flex gap-1 list-none m-0 p-0">
-      <li>
-        <a
-          routerLink="/"
-          routerLinkActive="bg-[#1d1633] !text-white"
-          [routerLinkActiveOptions]="{ exact: true }"
-          class="block px-4 py-2 text-[#6d6a7c] rounded-lg transition-all duration-200 hover:bg-[#161126] hover:text-white"
-        >
-          Home
-        </a>
-      </li>
+    <nav class="ml-auto hidden md:block">
+      <ul class="flex gap-1 list-none m-0 p-0">
+        <li>
+          <a
+            routerLink="/"
+            routerLinkActive="bg-[#1d1633] !text-white"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="block px-4 py-2 text-[#6d6a7c] rounded-lg transition-all duration-200 hover:bg-[#161126] hover:text-white"
+          >
+            Home
+          </a>
+        </li>
+        <li>
+          <a
+            routerLink="/search"
+            routerLinkActive="bg-[#1d1633] !text-white"
+            class="block px-4 py-2 text-[#6d6a7c] rounded-lg transition-all duration-200 hover:bg-[#161126] hover:text-white"
+          >
+            Search
+          </a>
+        </li>
+        <li>
+          <a
+            routerLink="/playlist"
+            routerLinkActive="bg-[#1d1633] !text-white"
+            class="block px-4 py-2 text-[#6d6a7c] rounded-lg transition-all duration-200 hover:bg-[#161126] hover:text-white"
+          >
+            Playlists
+          </a>
+        </li>
+      </ul>
+    </nav>
 
-      <li>
-        <a
-          routerLink="/search"
-          routerLinkActive="bg-[#1d1633] !text-white"
-          class="block px-4 py-2 text-[#6d6a7c] rounded-lg transition-all duration-200 hover:bg-[#161126] hover:text-white"
-        >
-          Search
-        </a>
-      </li>
+    <button
+      (click)="menuOpen.set(!menuOpen())"
+      class="ml-auto md:hidden p-2 text-[#6d6a7c] hover:text-white transition-colors"
+      aria-label="Toggle menu">
+      @if (menuOpen()) {
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
+          <path d="M18 6 6 18M6 6l12 12" />
+        </svg>
+      } @else {
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
+          <path d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      }
+    </button>
+  </div>
 
-      <li>
-        <a
-          routerLink="/playlist"
-          routerLinkActive="bg-[#1d1633] !text-white"
-          class="block px-4 py-2 text-[#6d6a7c] rounded-lg transition-all duration-200 hover:bg-[#161126] hover:text-white"
-        >
-          Playlists
-        </a>
-      </li>
-    </ul>
-  </nav>
+  @if (menuOpen()) {
+    <nav class="md:hidden px-4 pb-4 pt-4 flex flex-col gap-1 border-t border-[#1d1633]">
+      <a
+        routerLink="/"
+        routerLinkActive="bg-[#1d1633] !text-white"
+        [routerLinkActiveOptions]="{ exact: true }"
+        (click)="menuOpen.set(false)"
+        class="block px-4 py-3 text-[#6d6a7c] rounded-lg transition-all duration-200 hover:bg-[#161126] hover:text-white"
+      >
+        Home
+      </a>
+      <a
+        routerLink="/search"
+        routerLinkActive="bg-[#1d1633] !text-white"
+        (click)="menuOpen.set(false)"
+        class="block px-4 py-3 text-[#6d6a7c] rounded-lg transition-all duration-200 hover:bg-[#161126] hover:text-white"
+      >
+        Search
+      </a>
+      <a
+        routerLink="/playlist"
+        routerLinkActive="bg-[#1d1633] !text-white"
+        (click)="menuOpen.set(false)"
+        class="block px-4 py-3 text-[#6d6a7c] rounded-lg transition-all duration-200 hover:bg-[#161126] hover:text-white"
+      >
+        Playlists
+      </a>
+    </nav>
+  }
 </header>
