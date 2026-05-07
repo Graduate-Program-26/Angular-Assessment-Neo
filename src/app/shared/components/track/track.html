@@ -34,6 +34,12 @@
   </div>
 </div>
 
+@if (rank() !== undefined) {
+  <span class="text-[#6d6a7c] text-sm shrink-0 tabular-nums text-right w-16">
+    {{ rank()! | number }}
+  </span>
+}
+
 <div class="relative shrink-0">
   <button
     (click)="toggleMenu($event)"
