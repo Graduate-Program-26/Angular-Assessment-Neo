@@ -1,7 +1,5 @@
 @if (!artist()) {
-  <p class="min-h-screen bg-[#0f0b1a] flex items-center justify-center text-[#6d6a7c]">
-    Loading...
-  </p>
+  <app-spinner />
 } @else {
   <div class="relative h-80 overflow-hidden">
     <img
@@ -11,15 +9,15 @@
     />
     <div class="absolute inset-0 bg-gradient-to-b from-transparent to-[#0f0b1a]"></div>
 
-    <div class="absolute bottom-0 left-0 px-8 pb-8 flex items-end gap-6">
+    <div class="absolute bottom-0 left-0 px-8 pb-8 flex items-end gap-4 sm:gap-6">
       <img
         [src]="artist()!.picture_big"
         [alt]="artist()!.name"
-        class="w-36 h-36 rounded-full object-cover shadow-2xl"
+        class="w-24 h-24 sm:w-36 sm:h-36 rounded-full object-cover shadow-2xl shrink-0"
       />
       <div class="flex flex-col gap-1">
         <span class="text-xs uppercase tracking-widest text-[#c4b5fd] font-medium">Artist</span>
-        <h1 class="text-5xl font-black text-white leading-tight">{{ artist()!.name }}</h1>
+        <h1 class="text-3xl sm:text-5xl font-black text-white leading-tight">{{ artist()!.name }}</h1>
         <p class="text-[#6d6a7c] text-sm mt-1">{{ formattedFans() }} fans</p>
       </div>
     </div>
@@ -30,13 +28,30 @@
       <h2 class="text-white font-bold text-xl mb-4">Popular</h2>
 
       @if (!topTracks()) {
-        <p class="text-[#6d6a7c]">Loading tracks...</p>
+        <div class="flex items-center gap-4 px-4 py-2 text-xs uppercase tracking-widest text-[#6d6a7c] border-b border-[#ffffff1a] mb-2">
+          <span class="w-5 shrink-0 text-right">#</span>
+          <span class="w-10 shrink-0"></span>
+          <span class="flex-[2_1_0%] min-w-0">Title</span>
+          <span class="flex-1 text-right hidden md:block">Rank</span>
+          <span class="w-6 shrink-0"></span>
+          <span class="flex-1 flex justify-end">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#6d6a7c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="9.5" />
+              <path d="M12 6.5v5.5l3.5 3.5" />
+            </svg>
+          </span>
+        </div>
+        <ul class="flex flex-col list-none">
+          @for (_ of trackSkeletons; track $index) {
+            <app-track-skeleton [showCover]="true" />
+          }
+        </ul>
       } @else {
         <div class="flex items-center gap-4 px-4 py-2 text-xs uppercase tracking-widest text-[#6d6a7c] border-b border-[#ffffff1a] mb-2">
           <span class="w-5 shrink-0 text-right">#</span>
           <span class="w-10 shrink-0"></span>
           <span class="flex-[2_1_0%] min-w-0">Title</span>
-          <span class="flex-1 text-right">Rank</span>
+          <span class="flex-1 text-right hidden md:block">Rank</span>
           <span class="w-6 shrink-0"></span>
           <span class="flex-1 flex justify-end">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#6d6a7c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -57,7 +72,11 @@
       <h2 class="text-white font-bold text-xl mb-4">Discography</h2>
 
       @if (!albums()) {
-        <p class="text-[#6d6a7c]">Loading albums...</p>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+          @for (album of albumSkeletons; track $index) {
+            <app-album-card-skeleton />
+          }
+        </div>
       } @else if (albums()!.data.length === 0) {
         <p class="text-[#6d6a7c]">No albums found.</p>
       } @else {

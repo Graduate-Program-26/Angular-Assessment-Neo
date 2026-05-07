@@ -5,10 +5,11 @@ import { TitleCasePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { DeezerService } from '../../shared/services/deezer.service';
 import { TrackItem } from '../../shared/components/track/track';
+import { TrackSkeleton } from '../../shared/components/track-skeleton/track-skeleton';
 
 @Component({
   selector: 'app-album',
-  imports: [RouterLink, TitleCasePipe, TrackItem],
+  imports: [RouterLink, TitleCasePipe, TrackItem, TrackSkeleton],
   templateUrl: './album.html',
   styleUrl: './album.css',
 })
@@ -36,4 +37,6 @@ export class Album {
     const date = this.album()?.release_date;
     return date ? new Date(date).getFullYear() : null;
   });
+
+  protected readonly trackSkeletons = Array.from({ length: 10 });
 }
