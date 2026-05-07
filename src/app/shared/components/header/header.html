@@ -9,7 +9,7 @@
             routerLink="/"
             routerLinkActive="bg-[#1d1633] !text-white"
             [routerLinkActiveOptions]="{ exact: true }"
-            class="block px-4 py-2 text-[#6d6a7c] rounded-lg transition-all duration-200 hover:bg-[#161126] hover:text-white"
+            class="block px-4 py-2 text-[#9290a0] rounded-lg transition-all duration-200 hover:bg-[#161126] hover:text-white"
           >
             Home
           </a>
@@ -18,7 +18,7 @@
           <a
             routerLink="/search"
             routerLinkActive="bg-[#1d1633] !text-white"
-            class="block px-4 py-2 text-[#6d6a7c] rounded-lg transition-all duration-200 hover:bg-[#161126] hover:text-white"
+            class="block px-4 py-2 text-[#9290a0] rounded-lg transition-all duration-200 hover:bg-[#161126] hover:text-white"
           >
             Search
           </a>
@@ -27,7 +27,7 @@
           <a
             routerLink="/playlist"
             routerLinkActive="bg-[#1d1633] !text-white"
-            class="block px-4 py-2 text-[#6d6a7c] rounded-lg transition-all duration-200 hover:bg-[#161126] hover:text-white"
+            class="block px-4 py-2 text-[#9290a0] rounded-lg transition-all duration-200 hover:bg-[#161126] hover:text-white"
           >
             Playlists
           </a>
@@ -37,7 +37,7 @@
 
     <button
       (click)="menuOpen.set(!menuOpen())"
-      class="ml-auto md:hidden p-2 text-[#6d6a7c] hover:text-white transition-colors"
+      class="ml-auto md:hidden p-2 text-[#9290a0] hover:text-white transition-colors"
       aria-label="Toggle menu">
       @if (menuOpen()) {
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
@@ -58,7 +58,7 @@
         routerLinkActive="bg-[#1d1633] !text-white"
         [routerLinkActiveOptions]="{ exact: true }"
         (click)="menuOpen.set(false)"
-        class="block px-4 py-3 text-[#6d6a7c] rounded-lg transition-all duration-200 hover:bg-[#161126] hover:text-white"
+        class="block px-4 py-3 text-[#9290a0] rounded-lg transition-all duration-200 hover:bg-[#161126] hover:text-white"
       >
         Home
       </a>
@@ -66,7 +66,7 @@
         routerLink="/search"
         routerLinkActive="bg-[#1d1633] !text-white"
         (click)="menuOpen.set(false)"
-        class="block px-4 py-3 text-[#6d6a7c] rounded-lg transition-all duration-200 hover:bg-[#161126] hover:text-white"
+        class="block px-4 py-3 text-[#9290a0] rounded-lg transition-all duration-200 hover:bg-[#161126] hover:text-white"
       >
         Search
       </a>
@@ -74,7 +74,7 @@
         routerLink="/playlist"
         routerLinkActive="bg-[#1d1633] !text-white"
         (click)="menuOpen.set(false)"
-        class="block px-4 py-3 text-[#6d6a7c] rounded-lg transition-all duration-200 hover:bg-[#161126] hover:text-white"
+        class="block px-4 py-3 text-[#9290a0] rounded-lg transition-all duration-200 hover:bg-[#161126] hover:text-white"
       >
         Playlists
       </a>
