@@ -9,13 +9,37 @@
   @if (!query.value) {
     <p class="mt-12 text-center text-[#6d6a7c]">Type to start searching</p>
   } @else if (!results()) {
-    <!-- To-Do: Add spinner -->
-    <p class="mt-12 text-center text-[#6d6a7c]">Loading...</p>
+    <section class="mt-8">
+      <div class="h-6 w-20 rounded bg-[#ffffff1a] animate-pulse mb-4"></div>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+        @for (_ of artistSkeletons; track $index) {
+          <app-artist-card-skeleton />
+        }
+      </div>
+    </section>
+
+    <section class="mt-10">
+      <div class="h-6 w-20 rounded bg-[#ffffff1a] animate-pulse mb-4"></div>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+        @for (album of albumSkeletons; track $index) {
+          <app-album-card-skeleton />
+        }
+      </div>
+    </section>
+
+    <section class="mt-10">
+      <div class="h-6 w-20 rounded bg-[#ffffff1a] animate-pulse mb-4"></div>
+      <ul class="flex flex-col list-none">
+        @for (track of trackSkeletons; track $index) {
+          <app-track-skeleton [showCover]="true" />
+        }
+      </ul>
+    </section>
   } @else if (results()!.data.length === 0) {
     <p class="mt-12 text-center text-[#6d6a7c]">No results found for: "{{ query.value }}".</p>
   } @else {
     @if (uniqueArtists().length > 0) {
-      <h2 class="mt-8 mb-4 font-semibold text-xl">Artists</h2>
+      <h2 class="mt-8 mb-4 font-semibold text-xl text-white">Artists</h2>
       <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
         @for (artist of uniqueArtists(); track artist.id) {
           <app-artist-card [artist]="artist" />
@@ -24,12 +48,33 @@
     }
 
     @if (uniqueAlbums().length > 0) {
-      <h2 class="mt-10 mb-4 font-semibold text-xl">Albums</h2>
+      <h2 class="mt-10 mb-4 font-semibold text-xl text-white">Albums</h2>
       <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
         @for (album of uniqueAlbums(); track album.id) {
           <app-album-card [album]="album" [artistName]="album.artistName" />
         }
       </div>
+    }
+
+    @if (uniqueTracks().length > 0) {
+      <h2 class="mt-10 mb-4 font-semibold text-xl text-white">Tracks</h2>
+      <div class="flex items-center gap-4 px-4 py-2 text-xs uppercase tracking-widest text-[#6d6a7c] border-b border-[#ffffff1a] mb-2">
+        <span class="w-5 shrink-0 text-right">#</span>
+        <span class="w-10 shrink-0"></span>
+        <span class="flex-[2_1_0%] min-w-0">Title</span>
+        <span class="w-6 shrink-0"></span>
+        <span class="flex-1 flex justify-end">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#6d6a7c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9.5" />
+            <path d="M12 6.5v5.5l3.5 3.5" />
+          </svg>
+        </span>
+      </div>
+      <ul class="flex flex-col list-none">
+        @for (track of uniqueTracks(); track track.id; let i = $index) {
+          <app-track [track]="$any(track)" [index]="i" [coverUrl]="track.album.cover_medium" [artistName]="track.artist.name" />
+        }
+      </ul>
     }
   }
 </section>

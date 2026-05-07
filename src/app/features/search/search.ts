@@ -5,10 +5,14 @@ import { debounceTime, distinctUntilChanged, filter, switchMap } from 'rxjs';
 import { DeezerService } from '../../shared/services/deezer.service';
 import { ArtistCard } from '../../shared/components/artist-card/artist-card';
 import { AlbumCard } from '../../shared/components/album-card/album-card';
+import { TrackItem } from '../../shared/components/track/track';
+import { TrackSkeleton } from '../../shared/components/track-skeleton/track-skeleton';
+import { ArtistCardSkeleton } from '../../shared/components/artist-card-skeleton/artist-card-skeleton';
+import { AlbumCardSkeleton } from '../../shared/components/album-card-skeleton/album-card-skeleton';
 
 @Component({
   selector: 'app-search',
-  imports: [ReactiveFormsModule, ArtistCard, AlbumCard],
+  imports: [ReactiveFormsModule, ArtistCard, AlbumCard, TrackItem, TrackSkeleton, ArtistCardSkeleton, AlbumCardSkeleton],
   templateUrl: './search.html',
   styleUrl: './search.css',
 })
@@ -47,4 +51,17 @@ export class Search {
       })
       .map((result) => ({ ...result.album, artistName: result.artist.name }));
   });
+
+  uniqueTracks = computed(() => {
+    const seen = new Set<number>();
+    return (this.results()?.data ?? []).filter((result) => {
+      if (seen.has(result.id)) return false;
+      seen.add(result.id);
+      return true;
+    });
+  });
+
+  protected readonly artistSkeletons = Array.from({ length: 6 });
+  protected readonly albumSkeletons = Array.from({ length: 5 });
+  protected readonly trackSkeletons = Array.from({ length: 5 });
 }
