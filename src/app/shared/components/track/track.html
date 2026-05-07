@@ -17,7 +17,7 @@
   <img [src]="coverUrl()" [alt]="track().title" class="w-10 h-10 rounded object-cover shrink-0" />
 }
 
-<div class="flex flex-col flex-1 min-w-0">
+<div class="flex flex-col flex-[2_1_0%] min-w-0">
   <span
     class="text-sm truncate transition-colors"
     [class.text-\[#c4b5fd\]]="playerService.playingTrackId() === track().id"
@@ -35,7 +35,7 @@
 </div>
 
 @if (rank() !== undefined) {
-  <span class="text-[#6d6a7c] text-sm shrink-0 tabular-nums text-right w-16">
+  <span class="text-[#6d6a7c] text-sm flex-1 tabular-nums text-right">
     {{ rank()! | number }}
   </span>
 }
@@ -68,4 +68,4 @@
   }
 </div>
 
-<span class="text-[#6d6a7c] text-sm shrink-0">{{ track().duration | duration }}</span>
+<span class="text-[#6d6a7c] text-sm flex-1 text-right">{{ track().duration | duration }}</span>
