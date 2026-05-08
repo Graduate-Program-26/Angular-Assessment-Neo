@@ -16,8 +16,8 @@ export class App {
 
   isLoginPage = toSignal(
     this.router.events.pipe(
-      filter(e => e instanceof NavigationEnd),
-      map(e => (e as NavigationEnd).urlAfterRedirects === '/login'),
+      filter((e) => e instanceof NavigationEnd),
+      map((e) => (e as NavigationEnd).urlAfterRedirects === '/login'),
     ),
     { initialValue: false },
   );
