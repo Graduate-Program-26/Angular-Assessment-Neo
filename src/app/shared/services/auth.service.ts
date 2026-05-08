@@ -9,7 +9,7 @@ export class AuthService {
   private router = inject(Router);
 
   user = toSignal(authState(this.auth));
-  isLoggedIn = computed(() => this.user() != null);
+  isLoggedIn = computed(() => this.user() !== null);
 
   async login(): Promise<void> {
     await signInWithPopup(this.auth, new GoogleAuthProvider());
