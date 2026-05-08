@@ -70,7 +70,7 @@
       </div>
       <ul class="flex flex-col list-none">
         @for (track of chart()!.tracks.data; track track.id; let i = $index) {
-          <app-track [track]="track" [index]="i" [coverUrl]="track.album.cover_small" [artistName]="track.artist?.name" [rank]="track.rank"/>
+        <li> <app-track [track]="track" [index]="i" [coverUrl]="track.album.cover_small" [artistName]="track.artist?.name" [rank]="track.rank"/> </li> 
         }
       </ul>
     </section>
