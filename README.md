@@ -200,4 +200,5 @@ private BASE_URL = 'https://corsproxy.io/?https://api.deezer.com';
 ![Desktop view of User Playlist Page](/public/screenshots/Desktop_View/UserPlaylist_Desktop.png)
 
 
-
+## Lighthouse Results
+![Lighthouse results](/public/screenshots/lighthouse/Screenshot%202026-05-08%20at%2013.07.57.png)
