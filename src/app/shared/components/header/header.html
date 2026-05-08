@@ -2,7 +2,7 @@
   <div class="flex items-center gap-6 px-6 py-4">
     <span class="text-[#f5f3ff] font-bold text-xl">MyDeezer App</span>
 
-    <nav class="ml-auto hidden md:block">
+    <nav class="ml-auto hidden md:flex items-center gap-1">
       <ul class="flex gap-1 list-none m-0 p-0">
         <li>
           <a
@@ -33,6 +33,26 @@
           </a>
         </li>
       </ul>
+
+      <!-- User + logout desktop -->
+      @if (auth.user(); as user) {
+        <div class="flex items-center gap-3 ml-4 pl-4 border-l border-[#2d2450]">
+          @if (user.photoURL) {
+            <img
+              [src]="user.photoURL"
+              [alt]="user.displayName ?? 'User'"
+              class="w-8 h-8 rounded-full object-cover"
+              referrerpolicy="no-referrer"
+            />
+          }
+          <button
+            (click)="auth.logout()"
+            class="text-[#9290a0] text-sm hover:text-white transition-colors"
+          >
+            Sign out
+          </button>
+        </div>
+      }
     </nav>
 
     <button
@@ -97,6 +117,31 @@
       >
         Playlists
       </a>
+
+      <!-- User + logout mobile -->
+      @if (auth.user(); as user) {
+        <div class="mt-2 pt-3 border-t border-[#2d2450] flex items-center justify-between px-1">
+          <div class="flex items-center gap-2">
+            @if (user.photoURL) {
+              <img
+                [src]="user.photoURL"
+                [alt]="user.displayName ?? 'User'"
+                class="w-7 h-7 rounded-full object-cover"
+                referrerpolicy="no-referrer"
+              />
+            }
+            <span class="text-[#9290a0] text-sm truncate max-w-[140px]">{{
+              user.displayName
+            }}</span>
+          </div>
+          <button
+            (click)="auth.logout(); menuOpen.set(false)"
+            class="text-[#9290a0] text-sm hover:text-white transition-colors shrink-0"
+          >
+            Sign out
+          </button>
+        </div>
+      }
     </nav>
   }
 </header>

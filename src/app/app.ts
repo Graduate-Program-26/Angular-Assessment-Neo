@@ -1,5 +1,7 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Router, RouterOutlet, NavigationEnd } from '@angular/router';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { filter, map } from 'rxjs';
 import { Header } from './shared/components/header/header';
 import { Footer } from './shared/components/footer/footer';
 
@@ -10,5 +12,13 @@ import { Footer } from './shared/components/footer/footer';
   styleUrl: './app.css',
 })
 export class App {
-  protected readonly title = signal('final-angular-assesment');
+  private router = inject(Router);
+
+  isLoginPage = toSignal(
+    this.router.events.pipe(
+      filter((e) => e instanceof NavigationEnd),
+      map((e) => (e as NavigationEnd).urlAfterRedirects === '/login'),
+    ),
+    { initialValue: false },
+  );
 }
