@@ -1,7 +1,11 @@
-<app-header />
+@if (!isLoginPage()) {
+  <app-header />
+}
 
 <main>
   <router-outlet />
 </main>
 
-<app-footer />
+@if (!isLoginPage()) {
+  <app-footer />
+}
