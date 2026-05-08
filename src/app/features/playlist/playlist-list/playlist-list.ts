@@ -2,10 +2,11 @@ import { Component, inject, signal } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { PlaylistStore } from '../../../shared/store/store';
+import { AutofocusDirective } from '../../../shared/directives/autofocus.directive';
 
 @Component({
   selector: 'app-playlist-list',
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink, AutofocusDirective],
   templateUrl: './playlist-list.html',
   styleUrl: './playlist-list.css',
 })

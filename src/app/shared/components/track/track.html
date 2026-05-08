@@ -51,7 +51,7 @@
   </button>
 
   @if (menuOpen()) {
-    <div class="fixed inset-0 z-10" (click)="menuOpen.set(false)"></div>
+    <div class="fixed inset-0 z-10" role="button" tabindex="0" aria-label="Close menu" (click)="menuOpen.set(false)" (keydown.escape)="menuOpen.set(false)"></div>
     <div class="absolute right-0 bottom-full mb-1 z-20 bg-[#1d1633] border border-[#2d2450] rounded-xl shadow-xl min-w-44 py-1 overflow-hidden">
       @if (store.count() === 0) {
         <p class="px-4 py-2 text-[#9290a0] text-sm">No playlists yet</p>
