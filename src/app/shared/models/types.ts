@@ -102,7 +102,7 @@ export interface SearchResponse {
 
 export interface UserPlaylist {
   id: string;
-  name: string; 
+  name: string;
   tracks: Track[];
   createdAt: number;
 }
@@ -110,9 +110,22 @@ export interface UserPlaylist {
 export interface ChartResponse {
   tracks: { data: TopTrack[] };
   albums: {
-    data: Pick<Album, 'id' | 'title' | 'cover_small' | 'cover_medium' | 'cover_big' | 'cover_xl' | 'release_date' | 'record_type'>[];
+    data: Pick<
+      Album,
+      | 'id'
+      | 'title'
+      | 'cover_small'
+      | 'cover_medium'
+      | 'cover_big'
+      | 'cover_xl'
+      | 'release_date'
+      | 'record_type'
+    >[];
   };
   artists: {
-    data: Pick<Artist, 'id' | 'name' | 'picture_small' | 'picture_medium' | 'picture_big' | 'picture_xl'>[];
+    data: Pick<
+      Artist,
+      'id' | 'name' | 'picture_small' | 'picture_medium' | 'picture_big' | 'picture_xl'
+    >[];
   };
 }

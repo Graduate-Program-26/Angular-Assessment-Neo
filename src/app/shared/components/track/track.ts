@@ -11,7 +11,8 @@ import { PlaylistStore } from '../../store/store';
   templateUrl: './track.html',
   styleUrl: './track.css',
   host: {
-    class: 'flex items-center gap-4 px-4 py-2 rounded-lg group hover:bg-[#1d1633] transition-colors relative',
+    class:
+      'flex items-center gap-4 px-4 py-2 rounded-lg group hover:bg-[#1d1633] transition-colors relative',
   },
 })
 export class TrackItem {
@@ -28,7 +29,7 @@ export class TrackItem {
 
   toggleMenu(event: MouseEvent): void {
     event.stopPropagation();
-    this.menuOpen.update(value => !value);
+    this.menuOpen.update((value) => !value);
   }
 
   addToPlaylist(playlistId: string, event: MouseEvent): void {

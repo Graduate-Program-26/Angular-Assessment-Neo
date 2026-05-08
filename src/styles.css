@@ -40,5 +40,8 @@ body {
     transform: translateY(0);
     filter: blur(0);
   }
+}
 
+.track-viewport {
+  height: 560px;
 }

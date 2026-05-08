@@ -2,6 +2,7 @@ import { Component, computed, inject } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { debounceTime, distinctUntilChanged, filter, switchMap } from 'rxjs';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import { DeezerService } from '../../shared/services/deezer.service';
 import { ArtistCard } from '../../shared/components/artist-card/artist-card';
 import { AlbumCard } from '../../shared/components/album-card/album-card';
@@ -12,7 +13,16 @@ import { AlbumCardSkeleton } from '../../shared/components/album-card-skeleton/a
 
 @Component({
   selector: 'app-search',
-  imports: [ReactiveFormsModule, ArtistCard, AlbumCard, TrackItem, TrackSkeleton, ArtistCardSkeleton, AlbumCardSkeleton],
+  imports: [
+    ReactiveFormsModule,
+    ArtistCard,
+    AlbumCard,
+    TrackItem,
+    TrackSkeleton,
+    ArtistCardSkeleton,
+    AlbumCardSkeleton,
+    ScrollingModule,
+  ],
   templateUrl: './search.html',
   styleUrl: './search.css',
 })
@@ -64,4 +74,8 @@ export class Search {
   protected readonly artistSkeletons = Array.from({ length: 6 });
   protected readonly albumSkeletons = Array.from({ length: 5 });
   protected readonly trackSkeletons = Array.from({ length: 5 });
+
+  trackById(_: number, track: { id: number }): number {
+    return track.id;
+  }
 }
