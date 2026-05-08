@@ -3,7 +3,9 @@
   class="flex flex-col gap-2 pb-3 bg-[#1d1633] rounded-lg cursor-pointer transition-all duration-300 hover:bg-[#261d3d] hover:scale-[1.02]"
 >
   <img
-    [src]="album().cover_big"
+    [src]="album().cover_medium"
+    [srcset]="album().cover_small + ' 56w, ' + album().cover_medium + ' 250w, ' + album().cover_big + ' 400w'"
+    sizes="(max-width: 640px) calc(50vw - 2rem), (max-width: 768px) calc(33vw - 2rem), (max-width: 1024px) calc(25vw - 2rem), 210px"
     [alt]="album().title"
     class="w-full aspect-square rounded-sm object-cover"
   />
@@ -12,7 +14,7 @@
       {{ album().title }}
     </span>
     @if (artistName()) {
-      <span class="text-[#6d6a7c] text-xs truncate">{{ artistName() }}</span>
+      <span class="text-[#9290a0] text-xs truncate">{{ artistName() }}</span>
     }
   </div>
 </a>

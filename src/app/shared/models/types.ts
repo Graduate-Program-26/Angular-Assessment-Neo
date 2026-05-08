@@ -46,7 +46,7 @@ export interface TopTrack {
   explicit_lyrics: boolean;
   preview: string;
   md5_image: string;
-  album: Pick<Album, 'id' | 'title' | 'cover_medium'>;
+  album: Pick<Album, 'id' | 'title' | 'cover_small' | 'cover_medium'>;
   artist?: { id: number; name: string };
 }
 

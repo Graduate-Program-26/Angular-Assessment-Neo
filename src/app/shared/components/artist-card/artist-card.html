@@ -4,6 +4,8 @@
 >
   <img
     [src]="artist().picture_medium"
+    [srcset]="artist().picture_small + ' 56w, ' + artist().picture_medium + ' 250w, ' + artist().picture_big + ' 400w'"
+    sizes="(max-width: 640px) calc(50vw - 3rem), (max-width: 768px) calc(33vw - 3rem), (max-width: 1024px) calc(25vw - 3rem), 140px"
     [alt]="artist().name"
     class="w-27 h-27 rounded-full object-cover"
   />

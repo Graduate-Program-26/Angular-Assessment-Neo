@@ -5,7 +5,7 @@ import { Track, UserPlaylist } from '../models/types';
 
 const DB_KEY = 'playlists';
 
-type PlaylistState = { playlists: UserPlaylist[] };
+interface PlaylistState  { playlists: UserPlaylist[] };
 
 export const PlaylistStore = signalStore(
   { providedIn: 'root' },

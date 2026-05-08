@@ -1,11 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import 'tailwindcss';
-/* body {
-  background-color: #18122a;
-  color: white;
-} */
-
 body {
   background: linear-gradient(to bottom, #0f0b1a, #1a1625);
   color: white;

@@ -4,10 +4,13 @@ import { filter, switchMap } from 'rxjs';
 import { DeezerService } from '../../shared/services/deezer.service';
 import { AlbumCard } from '../../shared/components/album-card/album-card';
 import { TrackItem } from '../../shared/components/track/track';
+import { Spinner } from '../../shared/components/spinner/spinner';
+import { TrackSkeleton } from '../../shared/components/track-skeleton/track-skeleton';
+import { AlbumCardSkeleton } from '../../shared/components/album-card-skeleton/album-card-skeleton';
 
 @Component({
   selector: 'app-artist',
-  imports: [AlbumCard, TrackItem],
+  imports: [AlbumCard, TrackItem, Spinner, TrackSkeleton, AlbumCardSkeleton],
   templateUrl: './artist.html',
   styleUrl: './artist.css',
 })
@@ -34,4 +37,7 @@ export class Artist {
     if (fans >= 1_000) return `${(fans / 1_000).toFixed(0)}K`;
     return fans.toString();
   });
+
+  protected readonly trackSkeletons = Array.from({ length: 10 });
+  protected readonly albumSkeletons = Array.from({ length: 10 });
 }

@@ -1,4 +1,5 @@
 import { Component, inject, input, signal } from '@angular/core';
+import { DecimalPipe } from '@angular/common';
 import { DurationPipe } from '../../pipes/duration.pipe';
 import { Track } from '../../models/types';
 import { PlayerService } from '../../services/player.service';
@@ -6,7 +7,7 @@ import { PlaylistStore } from '../../store/store';
 
 @Component({
   selector: 'app-track',
-  imports: [DurationPipe],
+  imports: [DurationPipe, DecimalPipe],
   templateUrl: './track.html',
   styleUrl: './track.css',
   host: {
@@ -18,6 +19,7 @@ export class TrackItem {
   index = input.required<number>();
   coverUrl = input<string | undefined>(undefined);
   artistName = input<string | undefined>(undefined);
+  rank = input<number | undefined>();
 
   protected playerService = inject(PlayerService);
   protected store = inject(PlaylistStore);
