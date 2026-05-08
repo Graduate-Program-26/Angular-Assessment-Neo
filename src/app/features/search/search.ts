@@ -13,7 +13,16 @@ import { AlbumCardSkeleton } from '../../shared/components/album-card-skeleton/a
 
 @Component({
   selector: 'app-search',
-  imports: [ReactiveFormsModule, ArtistCard, AlbumCard, TrackItem, TrackSkeleton, ArtistCardSkeleton, AlbumCardSkeleton, ScrollingModule],
+  imports: [
+    ReactiveFormsModule,
+    ArtistCard,
+    AlbumCard,
+    TrackItem,
+    TrackSkeleton,
+    ArtistCardSkeleton,
+    AlbumCardSkeleton,
+    ScrollingModule,
+  ],
   templateUrl: './search.html',
   styleUrl: './search.css',
 })

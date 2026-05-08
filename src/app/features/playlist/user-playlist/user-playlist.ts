@@ -15,9 +15,7 @@ export class UserPlaylist {
 
   id = input.required<string>();
 
-  playlist = computed(() =>
-    this.store.playlists().find(playlist => playlist.id === this.id())
-  );
+  playlist = computed(() => this.store.playlists().find((playlist) => playlist.id === this.id()));
 
   totalDuration = computed(() => {
     const tracks = this.playlist()?.tracks ?? [];
@@ -31,7 +29,9 @@ export class UserPlaylist {
   });
 
   coverUrl(md5: string): string | undefined {
-    return md5 ? `https://e-cdns-images.dzcdn.net/images/cover/${md5}/56x56-000000-80-0-0.jpg` : undefined;
+    return md5
+      ? `https://e-cdns-images.dzcdn.net/images/cover/${md5}/56x56-000000-80-0-0.jpg`
+      : undefined;
   }
 
   trackById(_: number, track: { id: number }): number {

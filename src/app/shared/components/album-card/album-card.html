@@ -4,7 +4,14 @@
 >
   <img
     [src]="album().cover_medium"
-    [srcset]="album().cover_small + ' 56w, ' + album().cover_medium + ' 250w, ' + album().cover_big + ' 400w'"
+    [srcset]="
+      album().cover_small +
+      ' 56w, ' +
+      album().cover_medium +
+      ' 250w, ' +
+      album().cover_big +
+      ' 400w'
+    "
     sizes="(max-width: 640px) calc(50vw - 2rem), (max-width: 768px) calc(33vw - 2rem), (max-width: 1024px) calc(25vw - 2rem), 210px"
     [alt]="album().title"
     class="w-full aspect-square rounded-sm object-cover"

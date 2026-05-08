@@ -2,7 +2,9 @@
   <div class="relative overflow-hidden">
     <div class="absolute inset-0 bg-gradient-to-b from-[#2d1b69] via-[#1a1033] to-[#0f0b1a]"></div>
     <div class="relative px-8 pt-16 pb-8 flex flex-col sm:flex-row items-start sm:items-end gap-6">
-      <div class="w-36 h-36 sm:w-52 sm:h-52 rounded shadow-2xl shrink-0 bg-[#ffffff1a] animate-pulse"></div>
+      <div
+        class="w-36 h-36 sm:w-52 sm:h-52 rounded shadow-2xl shrink-0 bg-[#ffffff1a] animate-pulse"
+      ></div>
       <div class="flex flex-col gap-3 min-w-0 flex-1">
         <div class="h-2.5 w-14 rounded bg-[#ffffff1a] animate-pulse"></div>
         <div class="h-8 sm:h-11 w-2/3 rounded bg-[#ffffff1a] animate-pulse"></div>
@@ -16,13 +18,25 @@
   </div>
 
   <div class="bg-[#0f0b1a] px-8 pb-16">
-    <div class="flex items-center gap-4 px-4 py-2 text-xs uppercase tracking-widest text-[#9290a0] border-b border-[#ffffff1a] mb-2">
+    <div
+      class="flex items-center gap-4 px-4 py-2 text-xs uppercase tracking-widest text-[#9290a0] border-b border-[#ffffff1a] mb-2"
+    >
       <span class="w-5 shrink-0 text-right">#</span>
       <span class="flex-[2_1_0%] min-w-0">Title</span>
       <span class="flex-1 text-right hidden md:block">Rank</span>
       <span class="w-6 shrink-0"></span>
       <span class="flex-1 flex justify-end">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#9290a0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          width="15"
+          height="15"
+          fill="none"
+          stroke="#9290a0"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
           <circle cx="12" cy="12" r="9.5" />
           <path d="M12 6.5v5.5l3.5 3.5" />
         </svg>
@@ -41,7 +55,14 @@
     <div class="relative px-8 pt-16 pb-8 flex flex-col sm:flex-row items-start sm:items-end gap-6">
       <img
         [src]="album()!.cover_big"
-        [srcset]="album()!.cover_medium + ' 250w, ' + album()!.cover_big + ' 400w, ' + album()!.cover_xl + ' 1000w'"
+        [srcset]="
+          album()!.cover_medium +
+          ' 250w, ' +
+          album()!.cover_big +
+          ' 400w, ' +
+          album()!.cover_xl +
+          ' 1000w'
+        "
         sizes="(max-width: 640px) 144px, 208px"
         [alt]="album()!.title"
         class="w-36 h-36 sm:w-52 sm:h-52 rounded shadow-2xl shrink-0 object-cover"
@@ -51,7 +72,9 @@
         <span class="text-xs uppercase tracking-widest text-[#c4b5fd] font-medium">
           {{ album()!.record_type | titlecase }}
         </span>
-        <h1 class="text-3xl sm:text-5xl font-black text-white leading-tight truncate">{{ album()!.title }}</h1>
+        <h1 class="text-3xl sm:text-5xl font-black text-white leading-tight truncate">
+          {{ album()!.title }}
+        </h1>
         <div class="flex items-center gap-1 text-sm text-[#9290a0] flex-wrap">
           @if (album()!.artist) {
             <a
@@ -73,13 +96,25 @@
   </div>
 
   <div class="bg-[#0f0b1a] px-8 pb-16">
-    <div class="flex items-center gap-4 px-4 py-2 text-xs uppercase tracking-widest text-[#9290a0] border-b border-[#ffffff1a] mb-2">
+    <div
+      class="flex items-center gap-4 px-4 py-2 text-xs uppercase tracking-widest text-[#9290a0] border-b border-[#ffffff1a] mb-2"
+    >
       <span class="w-5 shrink-0 text-right">#</span>
       <span class="flex-[2_1_0%] min-w-0">Title</span>
       <span class="flex-1 text-right hidden md:block">Rank</span>
       <span class="w-6 shrink-0"></span>
       <span class="flex-1 flex justify-end">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#9290a0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          width="15"
+          height="15"
+          fill="none"
+          stroke="#9290a0"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
           <circle cx="12" cy="12" r="9.5" />
           <path d="M12 6.5v5.5l3.5 3.5" />
         </svg>
@@ -92,13 +127,23 @@
       <cdk-virtual-scroll-viewport itemSize="56" class="track-viewport">
         <app-track
           *cdkVirtualFor="let track of album()!.tracks!.data; trackBy: trackById; let i = index"
-          [track]="track" [index]="i" [artistName]="album()!.artist?.name" [rank]="track.rank"
+          [track]="track"
+          [index]="i"
+          [artistName]="album()!.artist?.name"
+          [rank]="track.rank"
         />
       </cdk-virtual-scroll-viewport>
     } @else {
       <ul class="flex flex-col list-none">
         @for (track of album()!.tracks!.data; track track.id; let i = $index) {
-          <li><app-track [track]="track" [index]="i" [artistName]="album()!.artist?.name" [rank]="track.rank" /></li>
+          <li>
+            <app-track
+              [track]="track"
+              [index]="i"
+              [artistName]="album()!.artist?.name"
+              [rank]="track.rank"
+            />
+          </li>
         }
       </ul>
     }

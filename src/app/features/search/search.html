@@ -58,13 +58,25 @@
 
     @if (uniqueTracks().length > 0) {
       <h2 class="mt-10 mb-4 font-semibold text-xl text-white">Tracks</h2>
-      <div class="flex items-center gap-4 px-4 py-2 text-xs uppercase tracking-widest text-[#9290a0] border-b border-[#ffffff1a] mb-2">
+      <div
+        class="flex items-center gap-4 px-4 py-2 text-xs uppercase tracking-widest text-[#9290a0] border-b border-[#ffffff1a] mb-2"
+      >
         <span class="w-5 shrink-0 text-right">#</span>
         <span class="w-10 shrink-0"></span>
         <span class="flex-[2_1_0%] min-w-0">Title</span>
         <span class="w-6 shrink-0"></span>
         <span class="flex-1 flex justify-end">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#9290a0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="15"
+            height="15"
+            fill="none"
+            stroke="#9290a0"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
             <circle cx="12" cy="12" r="9.5" />
             <path d="M12 6.5v5.5l3.5 3.5" />
           </svg>
@@ -74,13 +86,23 @@
         <cdk-virtual-scroll-viewport itemSize="56" class="track-viewport">
           <app-track
             *cdkVirtualFor="let track of uniqueTracks(); trackBy: trackById; let i = index"
-            [track]="$any(track)" [index]="i" [coverUrl]="track.album.cover_small" [artistName]="track.artist.name"
+            [track]="$any(track)"
+            [index]="i"
+            [coverUrl]="track.album.cover_small"
+            [artistName]="track.artist.name"
           />
         </cdk-virtual-scroll-viewport>
       } @else {
         <ul class="flex flex-col list-none">
           @for (track of uniqueTracks(); track track.id; let i = $index) {
-            <li><app-track [track]="$any(track)" [index]="i" [coverUrl]="track.album.cover_small" [artistName]="track.artist.name" /></li>
+            <li>
+              <app-track
+                [track]="$any(track)"
+                [index]="i"
+                [coverUrl]="track.album.cover_small"
+                [artistName]="track.artist.name"
+              />
+            </li>
           }
         </ul>
       }
