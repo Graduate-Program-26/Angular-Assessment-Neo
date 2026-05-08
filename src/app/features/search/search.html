@@ -70,11 +70,20 @@
           </svg>
         </span>
       </div>
-      <ul class="flex flex-col list-none">
-        @for (track of uniqueTracks(); track track.id; let i = $index) {
-         <li> <app-track [track]="$any(track)" [index]="i" [coverUrl]="track.album.cover_small" [artistName]="track.artist.name" /> </li>
-        }
-      </ul>
+      @if (uniqueTracks().length > 10) {
+        <cdk-virtual-scroll-viewport itemSize="56" class="track-viewport">
+          <app-track
+            *cdkVirtualFor="let track of uniqueTracks(); trackBy: trackById; let i = index"
+            [track]="$any(track)" [index]="i" [coverUrl]="track.album.cover_small" [artistName]="track.artist.name"
+          />
+        </cdk-virtual-scroll-viewport>
+      } @else {
+        <ul class="flex flex-col list-none">
+          @for (track of uniqueTracks(); track track.id; let i = $index) {
+            <li><app-track [track]="$any(track)" [index]="i" [coverUrl]="track.album.cover_small" [artistName]="track.artist.name" /></li>
+          }
+        </ul>
+      }
     }
   }
 </section>

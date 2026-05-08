@@ -88,10 +88,17 @@
 
     @if (!album()!.tracks || album()!.tracks!.data.length === 0) {
       <p class="text-[#9290a0] mt-4">No tracks available.</p>
+    } @else if (album()!.tracks!.data.length > 10) {
+      <cdk-virtual-scroll-viewport itemSize="56" class="track-viewport">
+        <app-track
+          *cdkVirtualFor="let track of album()!.tracks!.data; trackBy: trackById; let i = index"
+          [track]="track" [index]="i" [artistName]="album()!.artist?.name" [rank]="track.rank"
+        />
+      </cdk-virtual-scroll-viewport>
     } @else {
       <ul class="flex flex-col list-none">
         @for (track of album()!.tracks!.data; track track.id; let i = $index) {
-            <li> <app-track [track]="track" [index]="i" [artistName]="album()!.artist?.name" [rank]="track.rank" /></li>
+          <li><app-track [track]="track" [index]="i" [artistName]="album()!.artist?.name" [rank]="track.rank" /></li>
         }
       </ul>
     }

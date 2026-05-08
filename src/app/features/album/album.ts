@@ -3,13 +3,14 @@ import { toSignal, toObservable } from '@angular/core/rxjs-interop';
 import { filter, switchMap } from 'rxjs';
 import { TitleCasePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import { DeezerService } from '../../shared/services/deezer.service';
 import { TrackItem } from '../../shared/components/track/track';
 import { TrackSkeleton } from '../../shared/components/track-skeleton/track-skeleton';
 
 @Component({
   selector: 'app-album',
-  imports: [RouterLink, TitleCasePipe, TrackItem, TrackSkeleton],
+  imports: [RouterLink, TitleCasePipe, TrackItem, TrackSkeleton, ScrollingModule],
   templateUrl: './album.html',
   styleUrl: './album.css',
 })
@@ -39,4 +40,8 @@ export class Album {
   });
 
   protected readonly trackSkeletons = Array.from({ length: 10 });
+
+  trackById(_: number, track: { id: number }): number {
+    return track.id;
+  }
 }

@@ -1,11 +1,12 @@
 import { Component, computed, inject, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import { PlaylistStore } from '../../../shared/store/store';
 import { TrackItem } from '../../../shared/components/track/track';
 
 @Component({
   selector: 'app-user-playlist',
-  imports: [RouterLink, TrackItem],
+  imports: [RouterLink, TrackItem, ScrollingModule],
   templateUrl: './user-playlist.html',
   styleUrl: './user-playlist.css',
 })
@@ -31,5 +32,9 @@ export class UserPlaylist {
 
   coverUrl(md5: string): string | undefined {
     return md5 ? `https://e-cdns-images.dzcdn.net/images/cover/${md5}/56x56-000000-80-0-0.jpg` : undefined;
+  }
+
+  trackById(_: number, track: { id: number }): number {
+    return track.id;
   }
 }
