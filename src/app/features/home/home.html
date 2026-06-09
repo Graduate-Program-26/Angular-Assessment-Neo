@@ -1,0 +1,98 @@
+<div class="relative overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-b from-[#2d1b69] via-[#1a1033] to-[#0f0b1a]"></div>
+  <div class="relative px-8 pt-16 pb-12">
+    <h1 class="text-3xl sm:text-4xl font-black text-white">{{ greeting() }}</h1>
+    <p class="text-[#9290a0] mt-2 text-sm">Discover what's trending right now</p>
+  </div>
+</div>
+
+<div class="bg-[#0f0b1a] px-8 pb-16">
+  @if (!chart()) {
+    <section class="mt-10">
+      <div class="h-6 w-28 rounded bg-[#ffffff1a] animate-pulse mb-4"></div>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+        @for (artist of artistSkeletons; track $index) {
+          <app-artist-card-skeleton />
+        }
+      </div>
+    </section>
+
+    <section class="mt-12">
+      <div class="h-6 w-28 rounded bg-[#ffffff1a] animate-pulse mb-4"></div>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+        @for (_ of albumSkeletons; track $index) {
+          <app-album-card-skeleton />
+        }
+      </div>
+    </section>
+
+    <section class="mt-12">
+      <div class="h-6 w-24 rounded bg-[#ffffff1a] animate-pulse mb-4"></div>
+      <ul class="flex flex-col list-none">
+        @for (track of trackSkeletons; track $index) {
+          <app-track-skeleton [showCover]="true" />
+        }
+      </ul>
+    </section>
+  } @else {
+    <section class="mt-10">
+      <h2 class="text-white font-bold text-xl mb-4">Top Artists</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+        @for (artist of chart()!.artists.data; track artist.id) {
+          <app-artist-card [artist]="artist" />
+        }
+      </div>
+    </section>
+
+    <section class="mt-12">
+      <h2 class="text-white font-bold text-xl mb-4">Top Albums</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+        @for (album of chart()!.albums.data; track album.id) {
+          <app-album-card [album]="album" />
+        }
+      </div>
+    </section>
+
+    <section class="mt-12">
+      <h2 class="text-white font-bold text-xl mb-4">Top Tracks</h2>
+      <div
+        class="flex items-center gap-4 px-4 py-2 text-xs uppercase tracking-widest text-[#9290a0] border-b border-[#ffffff1a] mb-2"
+      >
+        <span class="w-5 shrink-0 text-right">#</span>
+        <span class="w-10 shrink-0"></span>
+        <span class="flex-[2_1_0%] min-w-0">Title</span>
+        <span class="flex-1 text-right hidden md:block">Rank</span>
+        <span class="w-6 shrink-0"></span>
+        <span class="flex-1 flex justify-end">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="15"
+            height="15"
+            fill="none"
+            stroke="#9290a0"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="12" cy="12" r="9.5" />
+            <path d="M12 6.5v5.5l3.5 3.5" />
+          </svg>
+        </span>
+      </div>
+      <ul class="flex flex-col list-none">
+        @for (track of chart()!.tracks.data; track track.id; let i = $index) {
+          <li>
+            <app-track
+              [track]="track"
+              [index]="i"
+              [coverUrl]="track.album.cover_small"
+              [artistName]="track.artist?.name"
+              [rank]="track.rank"
+            />
+          </li>
+        }
+      </ul>
+    </section>
+  }
+</div>
