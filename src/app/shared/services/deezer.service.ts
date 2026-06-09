@@ -1,5 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 import {
   Album,
   Artist,
@@ -16,7 +17,7 @@ import { Observable } from 'rxjs';
 })
 export class DeezerService {
   private http = inject(HttpClient);
-  private BASE_URL = 'https://corsproxy.io/?https://api.deezer.com';
+  private BASE_URL = environment.apiUrl;
 
   getAlbum(id: number): Observable<Album> {
     return this.http.get<Album>(`${this.BASE_URL}/album/${id}`);

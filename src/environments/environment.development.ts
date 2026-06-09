@@ -1,6 +1,6 @@
 export const environment = {
-  production: true,
-  apiUrl: 'https://REPLACE_WITH_RENDER_PROXY_URL',
+  production: false,
+  apiUrl: 'https://corsproxy.io/?https://api.deezer.com',
   firebase: {
     apiKey: "AIzaSyAeQL7RoS3UYsMQ_X_Prr-FM0pEqYXz7jg",
     authDomain: "mydeezer-app.firebaseapp.com",
